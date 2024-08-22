@@ -1,0 +1,21 @@
+//Soma dos primeiros números naturais
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    setlocale(LC_ALL, "portuguese");
+
+//Variaveis
+int N, resultado;
+
+//Algoritmo para receber o valor de N
+ printf("Digite o valor de N:");
+  scanf("%i", &N);
+  
+//Algoritmo para somar os números naturais
+ resultado = N * (N + 1) / 2;
+ printf("%i", resultado);
+ 
+ 
+return 0;
+}
