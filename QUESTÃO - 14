@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <locale.h>
+
+int main() {
+	setlocale(LC_ALL, "Portuguese");
+
+	// Variaveis
+    int numero, reversao = 0, digito;
+    
+    // Leitura do número do usuário
+    printf("Digite um número inteiro: ");
+    scanf("%d", &numero);
+    
+    // Invertendo o número
+    while (numero != 0) {
+        digito = numero % 10; 
+        reversao = reversao * 10 + digito; 
+        numero /= 10; 
+    }
+    
+    // Impressão do número invertido
+    printf("Número invertido: %d\n", reversao);
+
+    return 0;
+}
