@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <locale.h>
+
+int main() {
+	setlocale(LC_ALL, "Portuguese");
+	
+	// Variaveis 
+	int potencia, base, expoente;
+	
+	// Algoritmo para receber um numero
+	printf("Digite a base: \n");
+	 scanf("%i", &base);
+	 
+	printf("Digite o expoente: \n");
+	 scanf("%i", &expoente);
+	
+	// Algoritmo para calcular 
+	potencia = pow(base, expoente);
+	
+	// Algoritmo para exibir o resultado
+	printf("O seu resultado e: \n %i",potencia);
+return 0;
+}
