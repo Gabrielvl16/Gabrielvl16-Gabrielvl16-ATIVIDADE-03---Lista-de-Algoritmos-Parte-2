@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
+int polindromo(char *a);
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese");
+
+    char a[11]; // Aumenta o tamanho para 11 para incluir o caractere nulo
+
+    puts("Palavra com até 10 caracteres no máximo:");
+    if (fgets(a, sizeof(a), stdin) != NULL) {
+        // Remove o caractere de nova linha que fgets pode adicionar
+        size_t len = strlen(a);
+        if (len > 0 && a[len - 1] == '\n') {
+            a[len - 1] = '\0';
+        }
+
+        if (polindromo(a)) {
+            puts("Sim, é um palíndromo.");
+        } else {
+            puts("Não é um palíndromo.");
+        }
+    } else {
+        puts("Erro ao ler a entrada.");
+    }
+    
+    return 0;
+}
+
+int polindromo(char *a) {
+    int i, x;
+    for (i = 0, x = strlen(a) - 1; i < x; ++i, --x) {
+        if (a[i] != a[x]) {
+            return 0;
+        }
+    }
+    return 1;
+}
