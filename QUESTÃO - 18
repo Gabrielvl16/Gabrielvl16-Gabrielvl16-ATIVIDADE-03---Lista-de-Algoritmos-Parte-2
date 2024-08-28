@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale>
+
+// Função que calcula o MDC usando o Algoritmo de Euclides
+int mdc(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Função que calcula o MMC usando a fórmula MMC(a, b) = |a * b| / MDC(a, b)
+int mmc(int a, int b) {
+	 setlocale(LC_ALL, "Portuguese");
+	 
+    if (a == 0 || b == 0) {
+        return 0;  // MMC de qualquer número com 0 é 0
+    }
+    return (a * b) / mdc(a, b);
+}
+
+int main() {
+    int num1, num2;
+
+    // Solicita os números ao usuário
+    printf("Digite o primeiro número: ");
+    if (scanf("%d", &num1) != 1) {
+        printf("Entrada inválida.\n");
+        return 1;
+    }
+
+    printf("Digite o segundo número: ");
+    if (scanf("%d", &num2) != 1) {
+        printf("Entrada inválida.\n");
+        return 1;
+    }
+
+    // Verifica se os números são não negativos
+    if (num1 < 0 || num2 < 0) {
+        printf("Os números devem ser não negativos.\n");
+        return 1;
+    }
+
+    // Calcula e exibe o MMC
+    printf("O MMC entre %d e %d é %d.\n", num1, num2, mmc(num1, num2));
+
+    return 0;
+}
