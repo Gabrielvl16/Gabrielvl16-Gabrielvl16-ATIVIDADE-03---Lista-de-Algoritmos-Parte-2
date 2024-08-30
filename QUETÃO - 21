@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+// Função para realizar a busca linear
+int buscaLinear(int vetor[], int tamanho, int valor) {
+    for (int i = 0; i < tamanho; i++) {
+        if (vetor[i] == valor) {
+            return i;  // Retorna o índice do valor encontrado
+        }
+    }
+    return -1;  // Retorna -1 se o valor não for encontrado
+}
+
+// Função para imprimir o vetor
+void imprimirVetor(int vetor[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+}
+
+// Função para ler um número inteiro do usuário
+int lerNumero() {
+    int num;
+    printf("Digite um número: ");
+    scanf("%d", &num);
+    return num;
+}
+
+int main() {
+    // Definindo e inicializando o vetor
+    int vetor[] = {3, 5, 7, 9, 11, 13, 15};
+    int tamanho = sizeof(vetor) / sizeof(vetor[0]);
+
+    // Imprimindo o vetor
+    printf("Vetor: ");
+    imprimirVetor(vetor, tamanho);
+
+    // Lendo o valor a ser buscado
+    int valor = lerNumero();
+
+    // Realizando a busca linear
+    int resultado = buscaLinear(vetor, tamanho, valor);
+
+    // Exibindo o resultado
+    if (resultado != -1) {
+        printf("O valor %d foi encontrado no índice %d.\n", valor, resultado);
+    } else {
+        printf("O valor %d não foi encontrado no vetor.\n", valor);
+    }
+
+    return 0;
+}
