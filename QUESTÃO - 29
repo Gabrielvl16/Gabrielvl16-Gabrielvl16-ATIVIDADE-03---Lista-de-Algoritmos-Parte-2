@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <ctype.h> // Para a função tolower()
+
+// Função para contar o número de vogais em uma string
+int contarVogais(const char *str) {
+    int count = 0;
+    char ch;
+
+    // Percorre cada caractere da string
+    while ((ch = *str++) != '\0') {
+        // Converte o caractere para minúsculo para facilitar a comparação
+        ch = tolower(ch);
+        
+        // Verifica se o caractere é uma vogal
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+// Função para ler uma string do usuário
+void lerString(char *str, int tamanho) {
+    printf("Digite uma string (max %d caracteres): ", tamanho - 1);
+    fgets(str, tamanho, stdin);
+    
+    // Remove o caractere de nova linha se presente
+    str[strcspn(str, "\n")] = '\0';
+}
+
+int main() {
+    char str[100]; // Buffer para armazenar a string
+
+    // Lê a string do usuário
+    lerString(str, sizeof(str));
+
+    // Conta o número de vogais na string
+    int numeroDeVogais = contarVogais(str);
+
+    // Exibe o resultado
+    printf("O número de vogais na string é: %d\n", numeroDeVogais);
+
+    return 0;
+}
