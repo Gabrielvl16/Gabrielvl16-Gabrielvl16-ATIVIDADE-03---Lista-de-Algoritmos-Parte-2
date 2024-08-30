@@ -1,0 +1,80 @@
+#include <stdio.h>
+
+#define MAX 10 // Define o tamanho máximo para as matrizes
+
+// Função para ler uma matriz
+void lerMatriz(int matriz[][MAX], int linhas, int colunas) {
+    printf("Digite os elementos da matriz:\n");
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+// Função para multiplicar duas matrizes
+void multiplicarMatrizes(int matriz1[][MAX], int matriz2[][MAX], int resultado[][MAX], int linhas1, int colunas1, int colunas2) {
+    for (int i = 0; i < linhas1; i++) {
+        for (int j = 0; j < colunas2; j++) {
+            resultado[i][j] = 0; // Inicializa o elemento com 0
+            for (int k = 0; k < colunas1; k++) {
+                resultado[i][j] += matriz1[i][k] * matriz2[k][j];
+            }
+        }
+    }
+}
+
+// Função para imprimir uma matriz
+void imprimirMatriz(int matriz[][MAX], int linhas, int colunas) {
+    printf("Matriz:\n");
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int linhas1, colunas1, linhas2, colunas2;
+
+    // Lê as dimensões da primeira matriz
+    printf("Digite o número de linhas e colunas da primeira matriz: ");
+    scanf("%d %d", &linhas1, &colunas1);
+
+    // Lê as dimensões da segunda matriz
+    printf("Digite o número de linhas e colunas da segunda matriz: ");
+    scanf("%d %d", &linhas2, &colunas2);
+
+    // Verifica se a multiplicação é possível
+    if (colunas1 != linhas2) {
+        printf("A multiplicação de matrizes não é possível. O número de colunas da primeira matriz deve ser igual ao número de linhas da segunda matriz.\n");
+        return 1;
+    }
+
+    // Declaração das matrizes
+    int matriz1[MAX][MAX], matriz2[MAX][MAX], resultado[MAX][MAX];
+
+    // Lê as duas matrizes
+    printf("Para a primeira matriz:\n");
+    lerMatriz(matriz1, linhas1, colunas1);
+
+    printf("Para a segunda matriz:\n");
+    lerMatriz(matriz2, linhas2, colunas2);
+
+    // Multiplica as duas matrizes
+    multiplicarMatrizes(matriz1, matriz2, resultado, linhas1, colunas1, colunas2);
+
+    // Imprime as matrizes
+    printf("Primeira matriz:\n");
+    imprimirMatriz(matriz1, linhas1, colunas1);
+
+    printf("Segunda matriz:\n");
+    imprimirMatriz(matriz2, linhas2, colunas2);
+
+    printf("Matriz resultante da multiplicação:\n");
+    imprimirMatriz(resultado, linhas1, colunas2);
+
+    return 0;
+}
