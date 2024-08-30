@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Função para gerar um número secreto aleatório
+int gerarNumeroSecreto(int min, int max) {
+    return min + rand() % (max - min + 1);
+}
+
+// Função para ler um número inteiro do usuário
+int lerNumero() {
+    int num;
+    printf("Digite um número: ");
+    scanf("%d", &num);
+    return num;
+}
+
+int main() {
+    // Inicializa o gerador de números aleatórios
+    srand(time(NULL));
+
+    int min = 1; // Valor mínimo do intervalo
+    int max = 100; // Valor máximo do intervalo
+    int numeroSecreto = gerarNumeroSecreto(min, max);
+    int palpite;
+    int tentativas = 0;
+
+    printf("Bem-vindo ao jogo de adivinhação!\n");
+    printf("Tente adivinhar o número secreto entre %d e %d.\n", min, max);
+
+    do {
+        palpite = lerNumero();
+        tentativas++;
+
+        if (palpite < numeroSecreto) {
+            printf("O número secreto é maior que %d. Tente novamente.\n", palpite);
+        } else if (palpite > numeroSecreto) {
+            printf("O número secreto é menor que %d. Tente novamente.\n", palpite);
+        } else {
+            printf("Parabéns! Você adivinhou o número secreto %d em %d tentativas.\n", numeroSecreto, tentativas);
+        }
+    } while (palpite != numeroSecreto);
+
+    return 0;
+}
