@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <ctype.h> // Para a função isdigit()
+
+// Função para converter uma string para um número inteiro
+int stringParaInteiro(const char *str) {
+    int resultado = 0;
+    int sinal = 1; // 1 para positivo, -1 para negativo
+
+    // Ignorar espaços em branco iniciais
+    while (*str == ' ') {
+        str++;
+    }
+
+    // Verificar o sinal
+    if (*str == '-') {
+        sinal = -1;
+        str++;
+    } else if (*str == '+') {
+        str++;
+    }
+
+    // Converter a string para um número inteiro
+    while (*str != '\0' && isdigit(*str)) {
+        resultado = resultado * 10 + (*str - '0');
+        str++;
+    }
+
+    return resultado * sinal;
+}
+
+// Função para ler uma string do usuário
+void lerString(char *str, int tamanho) {
+    printf("Digite uma string (max %d caracteres): ", tamanho - 1);
+    fgets(str, tamanho, stdin);
+    
+    // Remove o caractere de nova linha se presente
+    str[strcspn(str, "\n")] = '\0';
+}
+
+int main() {
+    char str[100]; // Buffer para armazenar a string
+
+    // Lê a string do usuário
+    lerString(str, sizeof(str));
+
+    // Converte a string para um número inteiro
+    int numero = stringParaInteiro(str);
+
+    // Exibe o resultado
+    printf("O número convertido é: %d\n", numero);
+
+    return 0;
+}
