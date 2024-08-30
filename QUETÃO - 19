@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+// Função para verificar se um número é perfeito
+bool isPerfectNumber(int num) {
+    if (num <= 1) {
+        return false;  // Números menores ou iguais a 1 não são perfeitos
+    }
+
+    int sum = 0;
+
+    // Calcula a soma dos divisores próprios
+    for (int i = 1; i <= num / 2; i++) {
+        if (num % i == 0) {
+            sum += i;
+        }
+    }
+
+    // Verifica se a soma dos divisores é igual ao número
+    return sum == num;
+}
+
+// Função para ler um número inteiro do usuário
+int readNumber() {
+    int num;
+    printf("Digite um número: ");
+    scanf("%d", &num);
+    return num;
+}
+
+int main() {
+    int num = readNumber();
+
+    if (isPerfectNumber(num)) {
+        printf("%d é um número perfeito.\n", num);
+    } else {
+        printf("%d não é um número perfeito.\n", num);
+    }
+
+    return 0;
+}
