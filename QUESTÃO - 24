@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+// Função para converter um número binário (como string) para decimal
+int binarioParaDecimal(const char *binario) {
+    int decimal = 0;
+    int comprimento = strlen(binario);
+
+    for (int i = 0; i < comprimento; i++) {
+        // Verifica se o caractere é '1' e se sim, calcula seu valor decimal
+        if (binario[i] == '1') {
+            decimal += pow(2, comprimento - i - 1);
+        }
+    }
+
+    return decimal;
+}
+
+// Função para ler uma string de número binário do usuário
+void lerBinario(char *binario, int tamanho) {
+    printf("Digite um número binário: ");
+    fgets(binario, tamanho, stdin);
+    // Remove o caractere de nova linha no final da entrada
+    binario[strcspn(binario, "\n")] = '\0';
+}
+
+int main() {
+    char binario[65]; // Buffer para armazenar a entrada binária (suporta até 64 bits)
+
+    // Lê o número binário do usuário
+    lerBinario(binario, sizeof(binario));
+
+    // Converte o número binário para decimal
+    int decimal = binarioParaDecimal(binario);
+
+    // Exibe o resultado
+    printf("O número binário %s em decimal é %d.\n", binario, decimal);
+
+    return 0;
+}
