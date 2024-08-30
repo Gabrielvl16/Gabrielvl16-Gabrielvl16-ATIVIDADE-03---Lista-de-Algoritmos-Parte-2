@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+// Função para converter um número decimal para binário e armazenar em uma string
+void decimalParaBinario(int decimal, char *binario) {
+    // Buffer temporário para armazenar o binário reverso
+    char temp[32];
+    int i = 0;
+
+    if (decimal == 0) {
+        // Se o número é 0, o binário é simplesmente "0"
+        binario[i++] = '0';
+        binario[i] = '\0';
+        return;
+    }
+
+    // Converte o número decimal para binário
+    while (decimal > 0) {
+        temp[i++] = (decimal % 2) ? '1' : '0';
+        decimal /= 2;
+    }
+
+    // Adiciona o caractere nulo no final da string
+    temp[i] = '\0';
+
+    // Inverte a string para obter a representação binária correta
+    for (int j = 0; j < i; j++) {
+        binario[j] = temp[i - j - 1];
+    }
+    binario[i] = '\0';
+}
+
+// Função para ler um número inteiro do usuário
+int lerNumero() {
+    int num;
+    printf("Digite um número decimal: ");
+    scanf("%d", &num);
+    return num;
+}
+
+int main() {
+    int decimal = lerNumero();
+    char binario[33]; // Buffer para armazenar o número binário (suporta até 32 bits)
+
+    // Converte o número decimal para binário
+    decimalParaBinario(decimal, binario);
+
+    // Exibe o resultado
+    printf("O número decimal %d em binário é %s.\n", decimal, binario);
+
+    return 0;
+}
